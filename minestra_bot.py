@@ -1,4 +1,5 @@
 import telebot
+import re
 
 bot = telebot.TeleBot(token='277842064:AAFflOSXBvno7qgkHKz9aga09R2xSKJTpDM')
 
@@ -12,7 +13,7 @@ def send_welcome(message):
     bot.reply_to(message, "Hai voglia di qualcosa di buono?")
 
 
-@bot.message_handler(regexp='fame')
+@bot.message_handler(regexp=re.compile(r'fame', re.I))
 def ho_fame(message):
     bot.send_message(message.chat.id, 'Fatti una minestra di Gnappo!')
     bot.send_photo(message.chat.id, minestra())
